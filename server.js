@@ -13,8 +13,13 @@ app.use(express.static('public')); // serve your frontend files here
 
 // ─── PostgreSQL Connection ────────────────────────────────────
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  connectionString: process.env.DATABASE_URL || null,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+  host:     process.env.DB_HOST     || 'localhost',
+  port:     process.env.DB_PORT     || 5432,
+  database: process.env.DB_NAME     || 'verox_db',
+  user:     process.env.DB_USER     || 'postgres',
+  password: process.env.DB_PASSWORD || '123',
 });
 
 // ─── Create Tables on Startup ────────────────────────────────
