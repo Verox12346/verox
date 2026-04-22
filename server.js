@@ -133,4 +133,3 @@ app.get('/api/admin/purchases', async (req, res) => {
 initDB().then(() => {
   app.listen(PORT, () => console.log(`🚀 Verox server running on http://localhost:${PORT}`));
 });
-import { Analytics } from "@vercel/analytics/next"
